@@ -25,6 +25,11 @@ resource "azurerm_service_plan" "this" {
   sku_name            = "B1"
 }
 
+resource "azurerm_resource_group" "this" {
+  name     = local.resource_group_name
+  location = var.location_long
+}
+
 resource "azurerm_linux_web_app" "this" {
   name                = local.app_service_name
   resource_group_name = azurerm_resource_group.this.name
